@@ -66,7 +66,12 @@
         $ docker build -t amitgurav04/assignment_client .
     12. Run assignment_client docker container
         $ docker run --name assignment_client -d -p 8090:8090 --env SERVER_CONTAINER_NAME=assignment_server amitgurav04/assignment_client
-    13. Connect assignment_client container to myNetwork
+    13. See running containers.
+        $ docker ps
+        CONTAINER ID        IMAGE                           COMMAND             CREATED             STATUS              PORTS                    NAMES
+        2c353f8e34d0        amitgurav04/assignment_client   "/client"           13 minutes ago      Up 1 minutes       0.0.0.0:8090->8090/tcp   assignment_client
+        73e13ae58c8d        amitgurav04/assignment_server   "/server"           25 minutes ago      Up 14 minutes       0.0.0.0:8080->8080/tcp   assignment_server
+    14. Connect assignment_client container to myNetwork
         $docker network connect myNetwork assignment_client
     14. Inspect
         $docker network inspect myNetwork
