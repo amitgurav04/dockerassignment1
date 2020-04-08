@@ -116,7 +116,7 @@
              }
          ]
     15. Done.
-    16. Now let's check. O
+    16. Now let's check.
         Open Browser and open http://localhost:8090/checksum this url.
         It will show following response:
             File data got from server is: Hello World!!!
