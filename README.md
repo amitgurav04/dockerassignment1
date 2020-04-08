@@ -9,17 +9,21 @@
         $cd server
     4. Build docker image of server
         $docker build -t amitgurav04/assignment_server .
-    5. Run server container.
-        $docker run --name assignment_server -d -p 8080:8080 amitgurav04/assignment_server
-    6. See running containers.
+    5. Create docker volume.
+        $docker volume create servervol
+    6. Inspect docker volume servervol
+        $docker volume inspect servervol
+    7. Run server container.
+        $docker run --name assignment_server -d -v servervol:/go/src/github.com/amitgurav04/AssignmentServer -p 8080:8080 amitgurav04/assignment_server
+    8. See running containers.
         $ docker ps
         CONTAINER ID        IMAGE                           COMMAND             CREATED             STATUS              PORTS                    NAMES
         73e13ae58c8d        amitgurav04/assignment_server   "/server"           2 minutes ago       Up 2 minutes        0.0.0.0:8080->8080/tcp   assignment_server
-    7. Create network myNetwork.
+    9. Create network myNetwork.
         $docker network create myNetwork
-    8. Connect assignment_server container to myNetwork
+    10. Connect assignment_server container to myNetwork
         $docker network connect myNetwork assignment_server
-    9. Inspect myNetwork
+    11. Inspect myNetwork
        $ docker network inspect myNetwork
          [
              {
@@ -60,20 +64,20 @@
              }
          ]
 
-    10. Go inside client directory.
+    12. Go inside client directory.
         $ cd ../client
-    11. Build docker image of client
+    13. Build docker image of client
         $ docker build -t amitgurav04/assignment_client .
-    12. Run assignment_client docker container
+    14. Run assignment_client docker container
         $ docker run --name assignment_client -d -p 8090:8090 --env SERVER_CONTAINER_NAME=assignment_server amitgurav04/assignment_client
-    13. See running containers.
+    15. See running containers.
         $ docker ps
         CONTAINER ID        IMAGE                           COMMAND             CREATED             STATUS              PORTS                    NAMES
         2c353f8e34d0        amitgurav04/assignment_client   "/client"           13 minutes ago      Up 1 minutes       0.0.0.0:8090->8090/tcp   assignment_client
         73e13ae58c8d        amitgurav04/assignment_server   "/server"           25 minutes ago      Up 14 minutes       0.0.0.0:8080->8080/tcp   assignment_server
-    14. Connect assignment_client container to myNetwork
+    16. Connect assignment_client container to myNetwork
         $docker network connect myNetwork assignment_client
-    14. Inspect
+    17. Inspect
         $docker network inspect myNetwork
          [
              {
@@ -120,8 +124,8 @@
                  "Labels": {}
              }
          ]
-    15. Done.
-    16. Now let's check.
+    18. Done.
+    19. Now let's check.
         Open Browser and open http://localhost:8090/checksum this url.
         It will show following response:
             File data got from server is: Hello World!!!
