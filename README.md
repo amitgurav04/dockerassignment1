@@ -64,6 +64,7 @@
              }
          ]
 
+#### Run client application on docker container.
     12. Go inside client directory.
         $ cd ../client
     13. Build docker image of client
